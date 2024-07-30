@@ -52,7 +52,7 @@ filename = var.keyname
 resource "aws_instance" "web-server" {
   ami           = "${lookup(var.ami_id, var.region)}"
   instance_type = "t2.micro"
-  key_name      = "ntskey"
+  key_name      = var.keyname
 
 
  
