@@ -52,7 +52,7 @@ resource "aws_instance" "web-server" {
       inline = [
         "sudo apt-get update",
 		"sudo apt install -y openjdk-11-jre-headless",
-		"sudo apt install -y tomcat9 tomcat9-admin"
+		"sudo apt install -y tomcat9 tomcat9-admin",
 		"sudo rm -fr /usr/local/tomcat/webapps/ROOT"
         
         
