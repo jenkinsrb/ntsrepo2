@@ -1,13 +1,7 @@
 provider "aws" {  
-  region = "us-east-1"
- 
-  
+  region = "us-east-1" 
 
 }
-
-
-
-
 variable "region" {
     type = string
   default = "us-east-1"
@@ -58,8 +52,8 @@ resource "aws_instance" "web-server" {
  
   provisioner "remote-exec" {
       inline = [
-        "sudo apt-get update",
-		"sudo apt install -y openjdk-11-jre-headless",
+        	"sudo apt-get update",
+		"sudo apt install openjdk-11-jdk-headless",
 		"sudo apt install -y tomcat9",
 		"sudo rm -fr /var/lib/tomcat9/webapps/ROOT"
         
