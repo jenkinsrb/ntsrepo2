@@ -68,7 +68,7 @@ resource "aws_instance" "web-server" {
     }
 	
  provisioner "file" {
-    source      = "./target/*.war"
+    source      = "target/*.war"
     destination = "/usr/local/tomcat/webapps/ROOT.war"
   }
   connection {
