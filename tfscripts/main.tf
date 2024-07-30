@@ -12,9 +12,9 @@ variable "region" {
     type = string
   default = "us-east-1"
 }
-variable "private_key_path" {
+variable "keyname" {
     type = string
-  default = "ntskey.pem"
+  
 }
 
 variable "ami_id" {
@@ -36,7 +36,18 @@ terraform {
   }
 }
 
-
+resource "aws_key_pair" "tf-key-pair" {
+key_name = var.keyname
+public_key = tls_private_key.rsa.public_key_openssh
+}
+resource "tls_private_key" "rsa" {
+algorithm = "RSA"
+rsa_bits  = 4096
+}
+resource "local_file" "tf-key" {
+content  = tls_private_key.rsa.private_key_pem
+filename = var.keyname
+}
 
 resource "aws_instance" "web-server" {
   ami           = "${lookup(var.ami_id, var.region)}"
@@ -62,7 +73,7 @@ resource "aws_instance" "web-server" {
   }
   connection {
     user        = "ubuntu"
-    private_key = "${file("${var.private_key_path}")}"
+    private_key = local_file.tf-key.content
       host = "${aws_instance.web-server.public_ip}"
   }
 }
