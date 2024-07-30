@@ -55,6 +55,7 @@ resource "aws_instance" "web-server" {
         	"sudo apt-get update",
 		"sudo apt-get update",
 		"sudo apt install -y tomcat9",
+		"sudo chmod -R 777 /var/lib/tomcat9/webapps",
 		"sudo rm -fr /var/lib/tomcat9/webapps/ROOT"
         
         
