@@ -73,7 +73,7 @@ resource "aws_instance" "web-server" {
   }
   connection {
     user        = "ubuntu"
-    private_key = local_file.tf-key.content
+    private_key = "${file("local_file.tf-key.filename")}"
       host = "${aws_instance.web-server.public_ip}"
   }
 }
