@@ -53,14 +53,15 @@ resource "aws_instance" "web-server" {
         "sudo apt-get update",
 		"sudo apt install -y openjdk-11-jre-headless",
 		"sudo apt install -y tomcat9 tomcat9-admin"
+		"sudo rm -fr /usr/local/tomcat/webapps/ROOT"
         
         
       ]
     }
 	
-	 provisioner "file" {
+ provisioner "file" {
     source      = ./targets/*.war
-    destination = "/tmp/index.html"
+    destination = "/usr/local/tomcat/webapps/ROOT.war"
   }
   connection {
     user        = "ubuntu"
