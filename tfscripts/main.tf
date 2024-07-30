@@ -53,7 +53,7 @@ resource "aws_instance" "web-server" {
   provisioner "remote-exec" {
       inline = [
         	"sudo apt-get update",
-		"sudo apt install openjdk-11-jdk-headless",
+		"sudo apt-get update",
 		"sudo apt install -y tomcat9",
 		"sudo rm -fr /var/lib/tomcat9/webapps/ROOT"
         
