@@ -125,3 +125,7 @@ resource "aws_instance" "web-server" {
  }
 
 }
+
+output "pub_ip" {
+  value = aws_instance.web-server.public_ip
+}
